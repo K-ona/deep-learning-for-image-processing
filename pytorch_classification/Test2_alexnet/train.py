@@ -21,7 +21,7 @@ data_transform = {
                                transforms.ToTensor(),
                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])}
 
-data_root = os.path.abspath(os.path.join(os.getcwd(), "../.."))  # get data root path
+data_root = os.path.abspath(os.path.join(os.getcwd()))  # get data root path
 image_path = data_root + "\\data_set\\flower_data"  # flower data set path
 train_dataset = datasets.ImageFolder(root=image_path + "\\train",
                                      transform=data_transform["train"])
@@ -40,7 +40,7 @@ train_loader = torch.utils.data.DataLoader(train_dataset,
                                            batch_size=batch_size, shuffle=True,
                                            num_workers=0)
 
-validate_dataset = datasets.ImageFolder(root=image_path + "/val",
+validate_dataset = datasets.ImageFolder(root=image_path + "\\val",
                                         transform=data_transform["val"])
 val_num = len(validate_dataset)
 validate_loader = torch.utils.data.DataLoader(validate_dataset,
