@@ -67,7 +67,7 @@ loss_function = nn.CrossEntropyLoss()
 # pata = list(net.parameters())
 optimizer = optim.Adam(net.parameters(), lr=0.0002)
 
-save_path = './AlexNet.pth'
+save_path = r'D:\Document\GitHub\deep-learning-for-image-processing\pytorch_classification\Test2_alexnet\AlexNet.pth'
 best_acc = 0.0
 for epoch in range(10):
     # train
