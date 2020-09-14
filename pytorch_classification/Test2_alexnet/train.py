@@ -26,6 +26,7 @@ image_path = data_root + "\\data_set\\flower_data"  # flower data set path
 train_dataset = datasets.ImageFolder(root=image_path + "\\train",
                                      transform=data_transform["train"])
 train_num = len(train_dataset)
+tmp = len(train_dataset.imgs)
 
 # {'daisy':0, 'dandelion':1, 'roses':2, 'sunflower':3, 'tulips':4}
 flower_list = train_dataset.class_to_idx
