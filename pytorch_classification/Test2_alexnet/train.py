@@ -26,11 +26,18 @@ image_path = data_root + "\\data_set\\flower_data"  # flower data set path
 train_dataset = datasets.ImageFolder(root=image_path + "\\train",
                                      transform=data_transform["train"])
 train_num = len(train_dataset)
-tmp = len(train_dataset.imgs)
+#  def __len__(self):
+#         return len(self.samples)
+#  如上所示，该对象的父类DatasetFolder定义了len，可以直接用len() 求样本长度
+#  还可以用len(train_dataset.samples)
+#  或者len(train_dataset.imgs)
 
-# {'daisy':0, 'dandelion':1, 'roses':2, 'sunflower':3, 'tulips':4}
+# flower_list = {'daisy':0, 'dandelion':1, 'roses':2, 'sunflower':3, 'tulips':4}
 flower_list = train_dataset.class_to_idx
+
+# cla_dict = {0: 'daisy', 1: 'dandelion', 2: 'roses', 3: 'sunflower', 4: 'tulips'}
 cla_dict = dict((val, key) for key, val in flower_list.items())
+
 # write dict into json file
 json_str = json.dumps(cla_dict, indent=4)
 with open('class_indices.json', 'w') as json_file:
