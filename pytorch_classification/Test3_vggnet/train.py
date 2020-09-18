@@ -19,7 +19,7 @@ data_transform = {
                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])}
 
 
-data_root = os.path.abspath(os.path.join(os.getcwd(), "../.."))  # get data root path
+data_root = os.getcwd()  # get data root path
 image_path = data_root + "/data_set/flower_data/"  # flower data set path
 
 train_dataset = datasets.ImageFolder(root=image_path+"train",
@@ -56,10 +56,9 @@ loss_function = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.0001)
 
 best_acc = 0.0
-save_path = './{}Net.pth'.format(model_name)
+save_path = r'pytorch_classification\Test3_vggnet\{}Net.pth'.format(model_name)
 for epoch in range(30):
     # train
-    net.train()
     running_loss = 0.0
     for step, data in enumerate(train_loader, start=0):
         images, labels = data
