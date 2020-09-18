@@ -11,7 +11,7 @@ data_transform = transforms.Compose(
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 # load image
-img = Image.open(r'D:\Document\GitHub\deep-learning-for-image-processing\pytorch_classification\Test2_alexnet\test.jpg')
+img = Image.open(r'D:\Document\GitHub\deep-learning-for-image-processing\pytorch_classification\Test2_alexnet\test1.jpg')
 plt.imshow(img)
 # [N, C, H, W]
 img = data_transform(img)
