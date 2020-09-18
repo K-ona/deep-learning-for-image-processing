@@ -83,6 +83,7 @@ for epoch in range(10):
     net.train()
     running_loss = 0.0
     t1 = time.perf_counter()
+    #从train_loader,加载一个batch
     for step, data in enumerate(train_loader, start=0):
         images, labels = data
         optimizer.zero_grad()
@@ -105,10 +106,12 @@ for epoch in range(10):
     net.eval()
     acc = 0.0  # accumulate accurate number / epoch
     with torch.no_grad():
+        #从validate_loader加载一个batch
         for val_data in validate_loader:
             val_images, val_labels = val_data
             outputs = net(val_images.to(device))
             predict_y = torch.max(outputs, dim=1)[1]
+            #将预测正确的样本个数加起来，返回tensor类型值，item()返回int值
             acc += (predict_y == val_labels.to(device)).sum().item()
         val_accurate = acc / val_num
         if val_accurate > best_acc:
