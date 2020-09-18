@@ -43,7 +43,7 @@ json_str = json.dumps(cla_dict, indent=4)
 with open('class_indices.json', 'w') as json_file:
     json_file.write(json_str)
 
-batch_size = 32
+batch_size = 48
 train_loader = torch.utils.data.DataLoader(train_dataset,
                                            batch_size=batch_size, shuffle=True,
                                            num_workers=0)
@@ -78,7 +78,9 @@ optimizer = optim.Adam(net.parameters(), lr=0.0002)
 
 save_path = r'D:\Document\GitHub\deep-learning-for-image-processing\pytorch_classification\Test2_alexnet\AlexNet.pth'
 best_acc = 0.0
-for epoch in range(10):
+epo = 20
+
+for epoch in range(epo):
     # train
     net.train()
     running_loss = 0.0
