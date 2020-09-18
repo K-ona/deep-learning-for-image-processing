@@ -73,6 +73,7 @@ net = AlexNet(num_classes=5, init_weights=True)
 net.to(device)
 loss_function = nn.CrossEntropyLoss()
 # pata = list(net.parameters())
+# lr: learning_rate
 optimizer = optim.Adam(net.parameters(), lr=0.0002)
 
 save_path = r'D:\Document\GitHub\deep-learning-for-image-processing\pytorch_classification\Test2_alexnet\AlexNet.pth'
