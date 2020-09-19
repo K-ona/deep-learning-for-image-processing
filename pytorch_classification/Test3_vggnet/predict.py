@@ -11,7 +11,7 @@ data_transform = transforms.Compose(
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 # load image
-img = Image.open("../tulip.jpg")
+img = Image.open(r"pytorch_classification\Test3_vggnet\test1.jpg")
 plt.imshow(img)
 # [N, C, H, W]
 img = data_transform(img)
@@ -20,7 +20,7 @@ img = torch.unsqueeze(img, dim=0)
 
 # read class_indict
 try:
-    json_file = open('./class_indices.json', 'r')
+    json_file = open('class_indices.json', 'r')
     class_indict = json.load(json_file)
 except Exception as e:
     print(e)
@@ -29,7 +29,7 @@ except Exception as e:
 # create model
 model = vgg(model_name="vgg16", num_classes=5)
 # load model weights
-model_weight_path = "./vgg16Net.pth"
+model_weight_path = r"pytorch_classification\Test3_vggnet\vgg16Net.pth"
 model.load_state_dict(torch.load(model_weight_path))
 model.eval()
 with torch.no_grad():
@@ -37,5 +37,6 @@ with torch.no_grad():
     output = torch.squeeze(model(img))
     predict = torch.softmax(output, dim=0)
     predict_cla = torch.argmax(predict).numpy()
-print(class_indict[str(predict_cla)])
+    print(predict)
+print(list((class_indict[str(predict_cla)], predict[predict_cla].item()) for predict_cla in range(len(class_indict))))
 plt.show()
