@@ -35,7 +35,8 @@ model.eval()
 
 with torch.no_grad():
     # predict class
-    output = torch.squeeze(model(img))
+    output = model(img)
+    output = torch.squeeze(output)
     predict = torch.softmax(output, dim=0)
     print(predict)
     # predict_cla = torch.argmax(predict).numpy()
