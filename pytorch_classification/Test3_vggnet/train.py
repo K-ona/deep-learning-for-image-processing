@@ -64,6 +64,7 @@ for epoch in range(30):
         images, labels = data
         optimizer.zero_grad()
         outputs = net(images.to(device))
+        outputs = torch.softmax(outputs, dim=1)
         loss = loss_function(outputs, labels.to(device))
         loss.backward()
         optimizer.step()
