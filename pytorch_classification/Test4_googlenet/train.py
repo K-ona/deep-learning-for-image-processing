@@ -20,10 +20,10 @@ data_transform = {
                                transforms.ToTensor(),
                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])}
 
-data_root = os.path.abspath(os.path.join(os.getcwd(), "../.."))  # get data root path
-image_path = data_root + "/data_set/flower_data/"  # flower data set path
+data_root = os.getcwd()  # get data root path
+image_path = data_root + r"\data_set\flower_data"  # flower data set path
 
-train_dataset = datasets.ImageFolder(root=image_path + "train",
+train_dataset = datasets.ImageFolder(root=image_path + r"\train",
                                      transform=data_transform["train"])
 train_num = len(train_dataset)
 
@@ -40,7 +40,7 @@ train_loader = torch.utils.data.DataLoader(train_dataset,
                                            batch_size=batch_size, shuffle=True,
                                            num_workers=0)
 
-validate_dataset = datasets.ImageFolder(root=image_path + "val",
+validate_dataset = datasets.ImageFolder(root=image_path + r"\val",
                                         transform=data_transform["val"])
 val_num = len(validate_dataset)
 validate_loader = torch.utils.data.DataLoader(validate_dataset,
@@ -65,7 +65,7 @@ loss_function = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.0003)
 
 best_acc = 0.0
-save_path = './googleNet.pth'
+save_path = r'pytorch_classification\Test4_googlenet\googleNet.pth'
 for epoch in range(30):
     # train
     net.train()
